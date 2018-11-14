@@ -6,16 +6,14 @@
  const responseFormatter = async (ctx, next) => {
    // 先执行路由
    await next()
-   if (ctx.url.startsWith('/user')) {
-    console.log('ctx = ', ctx);
+  //  if (ctx.url.)
+   console.log('ctx = ', ctx);
 
-    ctx.body = {
-      code: 0,
-      msg: 'success',
-      data: ctx.body
-    }
+   ctx.body = {
+     code: 0,
+     msg: 'success',
+     data: ctx.body
    }
-   
  }
 
  module.exports = responseFormatter

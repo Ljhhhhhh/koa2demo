@@ -1,11 +1,11 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
-
-const {User, Query, Cookie} = require('./router')
-const responseFormatter = require('./middleware/responseFormatter')
 const static = require('koa-static')
 const path = require('path')
-const fs = require('fs')
+// const user = require('./router/user')
+// const query = require('./router/query')
+const {User, Query, Static} = require('./router')
+const responseFormatter = require('./middleware/responseFormatter')
 
 const app = new Koa()
 
@@ -14,12 +14,9 @@ app.use(responseFormatter)
 
 app.use(User.routes()).use(User.allowedMethods())
 app.use(Query.routes()).use(Query.allowedMethods())
-app.use(Cookie.routes()).use(Cookie.allowedMethods())
-
-const staticPath = './static'
-app.use(static(path.join(__dirname, staticPath)))
+// app.use(Static.routes()).use(Static.allowedMethods())
+app.use(static(path.join(__dirname, '../')))
 app.use(async (ctx) => {
-  ctx.body = fs.readdirSync(path.join(__dirname, staticPath + ctx.url))
+  ctx.body = 'hello static'
 })
-
 module.exports = app

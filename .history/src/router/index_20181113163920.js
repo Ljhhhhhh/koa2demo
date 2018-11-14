@@ -1,8 +1,8 @@
 const User = require('./user')
 const Query = require('./query')
-const Cookie = require('./cookie')
+const Static = require('./static')
 module.exports = {
   User,
   Query,
-  Cookie,
+  Static
 }
